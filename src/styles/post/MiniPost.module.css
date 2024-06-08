@@ -1,0 +1,74 @@
+.miniBoardContainer {
+  display: block;
+  margin: 0 auto;
+  min-width: 30rem;
+  width: 100%;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 1rem;
+  box-sizing: border-box;
+  text-decoration: none;
+  color: black;
+}
+
+.bookMark {
+  width: 2rem;
+  height: 2rem;
+}
+
+.titleContainer {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.miniBoardContent {
+  display: flex;
+  justify-content: space-between;
+}
+
+.postType {
+  padding: 0.5rem 1rem;
+  font-size: 1.3rem;
+  color: black;
+  border: 1px solid lightgray;
+  width: fit-content;
+  border-radius: 1rem;
+}
+
+.miniBoardTitle {
+  font-weight: 700;
+  font-size: 1.7rem;
+}
+
+.miniBoardContainer:hover {
+  background-color: rgba(250, 250, 250);
+}
+
+.action {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
+.miniBoardHr {
+  margin: 1.5rem 0;
+  border: 1px solid lightgray;
+}
+
+.miniBoardWriter {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
+.action,
+.date,
+.miniWriterName {
+  font-size: 1.2rem;
+  font-weight: 400;
+}

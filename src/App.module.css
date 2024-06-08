@@ -1,0 +1,60 @@
+:root {
+  --button-enabled: #fbe300;
+  --button-hover: #e9d200;
+  --button-disabled: #f3f38a;
+  --light-green: #b4c8bb;
+  --blue: #3f568b;
+}
+
+html {
+  background: #e4e2dd;
+  font-size: 62.5%;
+}
+
+body {
+  /* 익스플로러 스크롤바 옵션 */
+  -ms-overflow-style: none;
+  /* 파이어폭스 스크롤바 옵션 */
+  scrollbar-width: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+.helperText {
+  color: #ff0000;
+  font-size: 1.2rem;
+  font-weight: 400;
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.helperTextContainer {
+  margin-top: 0.2rem;
+  height: 2rem;
+  width: 100%;
+}
+
+.main {
+  margin: 1rem auto 0;
+  overflow-y: scroll;
+  width: 100%;
+  height: 100%;
+  max-width: 109rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.container {
+  min-width: 35rem;
+  border-radius: 1rem;
+  margin: 0 2rem;
+  height: 100%;
+  padding-top: 8rem;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
