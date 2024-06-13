@@ -13,6 +13,15 @@ export default function useFetch(url, options) {
     setLoading(true);
     try {
       const res = await fetch(url, options);
+
+      const newToken = res.headers.get("Authorization");
+      if (newToken) {
+        const tokenParts = newToken.split(" ");
+        if (tokenParts.length === 2 && tokenParts[0] === "Bearer") {
+          localStorage.setItem("token", tokenParts[1]);
+        }
+      }
+
       const json = await res.json();
       console.log(json);
       if (json.status === 200 || json.status === 201) {
@@ -23,9 +32,10 @@ export default function useFetch(url, options) {
       }
       setLoading(false);
       if (json.status === 401 || json.status === 403) {
+        alert("로그인 하십시오.");
         setLogIn(false);
         setResponseData(json);
-        return;
+        navigate(navUrl.home);
       }
 
       if (json.status === 404) {

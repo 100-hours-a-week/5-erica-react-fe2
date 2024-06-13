@@ -1,16 +1,23 @@
-import { headersNoToken, headersWithToken } from "../static";
+import { headersNoToken, getHeadersWithToken } from "../static";
 
 export const apiRequest = async ({ url, method, body: requestBody }) => {
   try {
     const options = {
       method,
-      headers: headersWithToken,
+      headers: getHeadersWithToken(),
       body: JSON.stringify(requestBody),
       credentials: "include",
     };
-
     const response = await fetch(url, options);
     const responseData = await response.json();
+
+    const newToken = response.headers.get("Authorization");
+    if (newToken) {
+      const tokenParts = newToken.split(" ");
+      if (tokenParts.length === 2 && tokenParts[0] === "Bearer") {
+        localStorage.setItem("token", tokenParts[1]);
+      }
+    }
 
     return responseData;
   } catch (error) {
@@ -30,6 +37,14 @@ export const apiRequestNoAuth = async ({ url, method, body: requestBody }) => {
 
     const response = await fetch(url, options);
     const responseData = await response.json();
+
+    const newToken = response.headers.get("Authorization");
+    if (newToken) {
+      const tokenParts = newToken.split(" ");
+      if (tokenParts.length === 2 && tokenParts[0] === "Bearer") {
+        localStorage.setItem("token", tokenParts[1]);
+      }
+    }
 
     return responseData;
   } catch (error) {
