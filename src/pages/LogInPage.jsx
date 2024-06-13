@@ -41,7 +41,7 @@ export default function LogInPage() {
       switch (responseData.status) {
         case 200:
           console.log(responseData.data);
-          sessionStorage.setItem("token", responseData.data?.token)
+          localStorage.setItem("token", responseData.data?.token)
           setLogInSuccess(true);
           enableScroll();
           setTimeout(() => {

@@ -32,7 +32,7 @@ export default function LogoutButton() {
   // }, [navigate]);
 
   const handleClickLogOut = () => {
-    sessionStorage.removeItem("token");
+    localStorage.removeItem("token");
     alert("로그아웃 됐습니다.");
     navigate(navUrl.home);
   };

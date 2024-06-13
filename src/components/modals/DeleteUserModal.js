@@ -24,7 +24,7 @@ export default function DeleteUserModal({ isDelete, setIsDelete }) {
       });
 
       if (deleteData.status === 200) {
-        sessionStorage.removeItem("token");
+        localStorage.removeItem("token");
         alert("계정이 삭제되었습니다.");
         navigate(navUrl.home);
       } else {
