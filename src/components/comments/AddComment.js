@@ -2,10 +2,13 @@ import { useState, useEffect } from "react";
 import { FetchUrl } from "../../utils/constants";
 import styles from "../../styles/comment/AddComment.module.css";
 import { apiRequest } from "../../utils/fetchData";
+import { useNavigate } from "react-router-dom";
+import { navUrl } from "../../utils/navigate";
 
 export default function AddComment({ postId, isAdd, setIsAdd, updateTarget }) {
   const [comment, setComment] = useState("");
   const [isAble, setIsAble] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(
     function getUpdateComment() {
@@ -52,6 +55,9 @@ export default function AddComment({ postId, isAdd, setIsAdd, updateTarget }) {
         alert("댓글이 수정되었습니다.");
         setIsAdd(true);
         window.location.reload();
+      } else if (responseData.status === 401 || responseData.status === 403) {
+        alert("로그인 하십시오.");
+        navigate(navUrl.home);
       } else {
         alert("댓글 작성 실패");
       }

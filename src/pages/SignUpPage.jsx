@@ -72,7 +72,7 @@ export default function SignUp({setLogIn, setSignUp}) {
       email,
       password,
       nickname,
-      profile_image: profileImage,
+      profileImage: profileImage,
     };
   
     try {

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { headersWithToken } from "../../static";
+import { getHeadersWithToken } from "../../static";
 import AddComment from "./AddComment.js";
 import Comment from "./Comment.js";
 import styles from "../../styles/comment/Comments.module.css";
@@ -13,7 +13,7 @@ export default function Comments({ postId }) {
   const { responseData, error } = useFetch(
     `${FetchUrl.posts}/${postId}/comments`,
     {
-      headers: headersWithToken,
+      headers: getHeadersWithToken(),
       credentials: "include",
     }
   );

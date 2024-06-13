@@ -1,4 +1,4 @@
-import { headersWithToken } from "../../static";
+import { getHeadersWithToken } from "../../static";
 import { Link } from "react-router-dom";
 import UserProfileImage from "./UserProfileImage";
 import useFetch from "../../hooks/useFetch";
@@ -8,23 +8,19 @@ import { navUrl } from "../../utils/navigate";
 import { FetchUrl } from "../../utils/constants";
 
 export default function UserProfile() {
-  const { responseData, error, loading } = useFetch(`${FetchUrl.user}`, {
-    headers: headersWithToken,
+  const { responseData, loading } = useFetch(`${FetchUrl.user}`, {
+    headers: getHeadersWithToken(),
     credentials: "include",
   });
 
-  if (!responseData || loading || error) {
+  if (!responseData || loading) {
     return null;
-  }
-
-  if (error) {
-    console.log(error);
   }
 
   return (
     <div className={styles.userSetting}>
-      {responseData?.data.profile_image ? (
-        <UserProfileImage image={responseData?.data.profile_image} size={36} />
+      {responseData?.data.profileImage ? (
+        <UserProfileImage image={responseData?.data.profileImage} size={36} />
       ) : (
         <div className={styles.profileImage}></div>
       )}

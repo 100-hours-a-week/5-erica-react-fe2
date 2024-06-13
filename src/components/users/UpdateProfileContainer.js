@@ -28,7 +28,7 @@ function UpdateProfileContainer({ responseData }) {
   useEffect(
     function userProfile() {
       if (responseData) {
-        setProfile(responseData.profile_image);
+        setProfile(responseData.profileImage);
         setNickname(responseData.nickname);
       }
     },
@@ -98,7 +98,7 @@ function UpdateProfileContainer({ responseData }) {
         method: "PATCH",
         body: {
           nickname,
-          profile_image: profile,
+          profileImage: profile,
         },
       });
 

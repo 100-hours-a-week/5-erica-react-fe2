@@ -16,8 +16,8 @@ function PostDetail({ responseData, setIsPostDelete }) {
           {data.type === "other" ? "고민" : "개발"}
         </div>
         <div className={styles.writer}>
-          <UserProfileImage image={data.member.profile_image} size={28} />
-          <p className={styles.postWriterName}>{data.member.nickname}</p>
+          <UserProfileImage image={data.profile_image} size={28} />
+          <p className={styles.postWriterName}>{data.nickname}</p>
           <div className={styles.postWriteDate}>
             {changeDate(data.created_at)}
           </div>
@@ -27,7 +27,7 @@ function PostDetail({ responseData, setIsPostDelete }) {
           <PostButton postId={data.post_id} setIsPostDelete={setIsPostDelete} />
         </div>
       </div>
-      <PostAction view={data.view} comment={data.comment_count} />
+      <PostAction view={data.view} comment={data.commentCount} />
       <div className={styles.boardBody}>
         {data.post_image ? (
           <div className={styles.boardImageContainer}>
