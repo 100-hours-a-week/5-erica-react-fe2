@@ -4,12 +4,12 @@ import { navUrl } from "../utils/navigate"
 import UserProfileImage from "./users/UserProfileImage"
 import useFetch from "../hooks/useFetch"
 import { backHost } from "../static"
-import { headersWithToken } from "../static"
+import { getHeadersWithToken } from "../static"
 import side_banner from "../images/side_banner.png"
 import {useState} from 'react';
 import withLogIn from "../hoc/withLogIn"
 
-export default function Layout({children, logIn, error, responseData}) {
+export default function Layout({children, logIn, responseData}) {
   const [clickedTab, setClickedTab] = useState("전체");
 
   if (!responseData) {
@@ -25,7 +25,7 @@ export default function Layout({children, logIn, error, responseData}) {
       <Link to={navUrl.myPosts} onClick={() => {setClickedTab("MY글")}} className={clickedTab === "MY글" ? `${styles.tabClicked}`: `${styles.tab}`}>MY 글</Link>
     </div>
     <div className={styles.layout}>
-      <AuthLayout logIn={logIn} error={error} responseData={responseData} />
+      <AuthLayout logIn={logIn} responseData={responseData} />
       {children}
     </div></>
   )
@@ -35,7 +35,7 @@ const AuthLayout= withLogIn(SideContainer);
 
 function SideContainer({ responseData}) {
   const {responseData: countResponseData} = useFetch(`${backHost}/api/users/myWrite`, {
-    headers: headersWithToken,
+    headers: getHeadersWithToken(),
     credentials: "include",
   });
 
@@ -43,7 +43,7 @@ function SideContainer({ responseData}) {
     <div className={styles.sideContainer}>
     <div className={styles.sideProfile}>
       <div className={styles.profileContainer}>
-        <UserProfileImage image={responseData?.data.profile_image} size={40}/>
+        <UserProfileImage image={responseData?.data.profileImage} size={40}/>
         <strong>🚀 {responseData?.data.nickname}</strong>
       </div>
       <hr />

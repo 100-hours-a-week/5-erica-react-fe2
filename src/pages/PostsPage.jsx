@@ -3,15 +3,15 @@ import MiniPost from "../components/posts/MiniPost";
 import styles from "../styles/post/Posts.module.css";
 import withLogIn from "../hoc/withLogIn";
 import withLoading from "../hoc/withLoading";
-import { headersWithToken } from "../static";
+import { getHeadersWithToken } from "../static";
 import useFetch from "../hooks/useFetch";
 import { FetchUrl } from "../utils/constants";
 import Layout from "../components/Layout";
 import { useLocation } from 'react-router-dom';
 
 export function Posts() {
-  const { responseData: userResponseData, error: userError, logIn: userLogIn } = useFetch(`${FetchUrl.user}`, {
-    headers: headersWithToken,
+  const { responseData: userResponseData, logIn: userLogIn } = useFetch(`${FetchUrl.user}`, {
+    headers: getHeadersWithToken(),
     credentials: "include",
   });
 
@@ -21,7 +21,7 @@ export function Posts() {
 
   
   return (
-    <AuthLayout logIn={userLogIn} error={userError} responseData={userResponseData}>
+    <AuthLayout logIn={userLogIn} responseData={userResponseData}>
       <section className={styles.postsMain}>
         {type === "coding" ? 
         <CodingPosts /> : type === "other" ? 
@@ -34,7 +34,7 @@ export function Posts() {
 
 function AllPosts() {
   const { responseData, loading } = useFetch(FetchUrl.posts, {
-    headers: headersWithToken,
+    headers: getHeadersWithToken(),
     credentials: "include",
   });
 
@@ -45,7 +45,7 @@ function AllPosts() {
 
 function MyPosts() {
   const { responseData, loading } = useFetch(FetchUrl.myPosts, {
-    headers: headersWithToken,
+    headers: getHeadersWithToken(),
     credentials: "include",
   });
 
@@ -56,7 +56,7 @@ function MyPosts() {
 
 function OtherPosts() {
   const {responseData, loading} = useFetch(FetchUrl.otherPosts, {
-    headers: headersWithToken,
+    headers: getHeadersWithToken(),
     credentials: "include",
   })
 
@@ -67,7 +67,7 @@ function OtherPosts() {
 
 function CodingPosts() {
   const {responseData, loading} = useFetch(FetchUrl.codingPosts, {
-    headers: headersWithToken, 
+    headers: getHeadersWithToken(), 
     credentials: "include"
   })
 
