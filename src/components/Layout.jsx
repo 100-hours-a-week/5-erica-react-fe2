@@ -49,19 +49,16 @@ function SideContainer({ responseData}) {
       <hr />
       <div className={styles.bottomContainer}>
         <div className={styles.count}>
-          <span>내가 쓴 글</span>
+          <span>내 스피치</span>
           {countResponseData?.data ? countResponseData?.data.postCount : 0 }
         </div>
         <div className={styles.count}>
-          <span>내가 쓴 댓글</span>
+          <span>내 커멘트</span>
           {countResponseData?.data ? countResponseData?.data.commentCount : 0 }
         </div>
       </div>
     </div>
     <div className={styles.writeContainer}>
-      <Link className={styles.writeBtn} to={navUrl.addPost}>
-        나의 생각 나누기
-      </Link>
     </div>
     <div className={styles.advertisement}>
       <div className={styles.title}>광고</div>

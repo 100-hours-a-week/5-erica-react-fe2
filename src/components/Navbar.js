@@ -18,11 +18,16 @@ export default function Navbar() {
         >
           <img alt="로고이미지" src={logo} className={styles.logo} />
         </Link>
-        {showProfile ? (
-          <UserProfile />
-        ) : (
-          <div className={styles.emptyUserProfile}></div>
-        )}
+        <div className={styles.navbarRight}>
+          <Link className={styles.writeBtn} to={navUrl.addPost}>
+            📣 새 스피치
+          </Link>
+          {showProfile ? (
+            <UserProfile />
+          ) : (
+            <div className={styles.emptyUserProfile}></div>
+          )}
+        </div>
       </div>
     </section>
   );
