@@ -3,11 +3,14 @@
   --button-hover: #e9d200;
   --button-disabled: #f3f38a;
   --light-green: #b4c8bb;
-  --blue: #3f568b;
+  --blue: #5197ff;
+  --light-blue: #d4e4f2;
+  --hover-blue: #bde0ff;
+  --light-gray: #f5f5f5;
 }
 
 html {
-  background: #e4e2dd;
+  background: var(--light-gray);
   font-size: 62.5%;
 }
 
@@ -52,7 +55,7 @@ body {
   border-radius: 1rem;
   margin: 0 2rem;
   height: 100%;
-  padding-top: 8rem;
+  padding-top: 6rem;
 }
 
 ::-webkit-scrollbar {

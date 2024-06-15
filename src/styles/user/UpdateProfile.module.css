@@ -127,7 +127,7 @@
 
 .profileUpdateButton {
   cursor: pointer;
-  background-color: var(--button-enabled);
+  background-color: var(--light-blue);
   border-radius: 1rem;
   border: 0;
   width: 100%;
@@ -174,14 +174,14 @@
 .updateMessage {
   margin-top: 2rem;
   padding: 1rem 1.5rem;
-  background-color: var(--button-enabled);
+  background-color: var(--hover-blue);
   color: black;
   font-size: 1.6rem;
   border-radius: 1rem;
 }
 
 .profileUpdateButton:hover {
-  background-color: var(--button-hover);
+  background-color: var(--hover-blue);
 }
 
 .helperText {

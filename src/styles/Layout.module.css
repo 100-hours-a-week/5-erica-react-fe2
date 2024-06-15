@@ -29,16 +29,18 @@
 .tab {
   border-radius: 1rem;
   cursor: pointer;
-  padding: 1rem;
+  padding: 0.5rem 1rem;
   height: 2rem;
   font-size: 1.5rem;
   text-decoration: none;
+  display: flex;
+  align-items: center;
   color: black;
   font-weight: 400;
 }
 
 .tab:hover {
-  background-color: #e2e2e2;
+  background-color: var(--light-blue);
 }
 
 .layout {
@@ -105,27 +107,7 @@
   width: 100%;
 }
 
-.writeBtn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-decoration: none;
-  width: 100%;
-  height: 5rem;
-  color: black;
-  font-size: 1.4rem;
-  font-weight: 500;
-  background-color: var(--button-enabled);
-  border-radius: 1rem;
-}
-
-.writeBtn:hover {
-  color: black;
-  background-color: var(--button-hover);
-}
-
 .advertisement {
-  margin-top: 2rem;
   width: 30rem;
 }
 
