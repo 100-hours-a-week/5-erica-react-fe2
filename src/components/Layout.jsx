@@ -97,7 +97,7 @@ function SideContainer({ responseData }) {
             {countResponseData?.data ? countResponseData?.data.postCount : 0}
           </div>
           <div className={styles.count}>
-            <span>내 커멘트</span>
+            <span>내 리스피치</span>
             {countResponseData?.data ? countResponseData?.data.commentCount : 0}
           </div>
         </div>
