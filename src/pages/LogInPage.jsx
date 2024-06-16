@@ -6,6 +6,7 @@ import { navUrl } from "../utils/navigate";
 import { FetchUrl } from "../utils/constants";
 import { apiRequestNoAuth } from "../utils/fetchData";
 import { enableScroll } from "../utils/scroll";
+import logo from "../assets/images/logo.png";
 
 export default function LogInPage() {
   const [email, setEmail] = useState("");
@@ -25,9 +26,9 @@ export default function LogInPage() {
 
   const handleClickLogIn = async () => {
     const isEmailValid = checkEmailValidation(email);
-  
+
     if (!isEmailValid) return;
-  
+
     try {
       const responseData = await apiRequestNoAuth({
         url: FetchUrl.logIn,
@@ -37,11 +38,11 @@ export default function LogInPage() {
           password,
         },
       });
-  
+
       switch (responseData.status) {
         case 200:
           console.log(responseData.data);
-          localStorage.setItem("token", responseData.data?.token)
+          localStorage.setItem("token", responseData.data?.token);
           setLogInSuccess(true);
           enableScroll();
           setTimeout(() => {
@@ -58,7 +59,6 @@ export default function LogInPage() {
       alert("로그인 요청 중 에러가 발생했습니다. 잠시 후 다시 시도해주세요.");
     }
   };
-  
 
   const checkEmailValidation = (email) => {
     const emailForm = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -73,7 +73,9 @@ export default function LogInPage() {
 
   return (
     <section className={styles.logIn}>
-      <div className={styles.title}>로그인</div>
+      <div className={styles.title}>
+        <img src={logo} alt="logo" className={styles.logo} />
+      </div>
       <form className={styles.logInContent}>
         <div className={styles.emailLogInContainer}>
           <label htmlFor="email" className={styles.logInTitle}>

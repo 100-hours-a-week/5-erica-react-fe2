@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { navUrl } from "../utils/navigate";
-import logo from "../images/logo.png";
+import logo from "../assets/images/logo.png";
 import UserProfile from "./users/UserProfile";
 import styles from "../styles/Navbar.module.css";
 import { useShowProfile } from "../hooks/useShowProfile";
@@ -18,16 +18,16 @@ export default function Navbar() {
         >
           <img alt="로고이미지" src={logo} className={styles.logo} />
         </Link>
-        <div className={styles.navbarRight}>
-          <Link className={styles.writeBtn} to={navUrl.addPost}>
-            📣 새 스피치
-          </Link>
-          {showProfile ? (
+        {showProfile ? (
+          <div className={styles.navbarRight}>
+            <Link className={styles.writeBtn} to={navUrl.addPost}>
+              📣 새 스피치
+            </Link>
             <UserProfile />
-          ) : (
-            <div className={styles.emptyUserProfile}></div>
-          )}
-        </div>
+          </div>
+        ) : (
+          <div className={styles.emptyUserProfile}></div>
+        )}
       </div>
     </section>
   );

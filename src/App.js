@@ -17,28 +17,21 @@ function App() {
     <BrowserRouter>
       <div className={styles.App}>
         <Navbar />
-        <section className={styles.container}>
-          <div className={styles.main}>
-            <Routes>
-              <Route path={navUrl.home} element={<Home />}></Route>
-              <Route path={navUrl.posts} element={<Posts />}></Route>
-              <Route path={navUrl.addPost} element={<AddPost />}></Route>
-              <Route
-                path={navUrl.postDetail}
-                element={<PostDetailPage />}
-              ></Route>
-              <Route path={navUrl.updatePost} element={<UpdatePost />}></Route>
-              <Route
-                path={navUrl.updateProfile}
-                element={<UpdateProfile />}
-              ></Route>
-              <Route
-                path={navUrl.updatePassword}
-                element={<UpdatePassword />}
-              ></Route>
-            </Routes>
-          </div>
-        </section>
+        <Routes>
+          <Route path={navUrl.home} element={<Home />}></Route>
+          <Route path={navUrl.posts} element={<Posts />}></Route>
+          <Route path={navUrl.addPost} element={<AddPost />}></Route>
+          <Route path={navUrl.postDetail} element={<PostDetailPage />}></Route>
+          <Route path={navUrl.updatePost} element={<UpdatePost />}></Route>
+          <Route
+            path={navUrl.updateProfile}
+            element={<UpdateProfile />}
+          ></Route>
+          <Route
+            path={navUrl.updatePassword}
+            element={<UpdatePassword />}
+          ></Route>
+        </Routes>
       </div>
     </BrowserRouter>
   );
