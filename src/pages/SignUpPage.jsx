@@ -1,10 +1,22 @@
 import styles from "../styles/SignUp.module.css";
 import { useState, useReducer } from "react";
 import { SignUpError } from "../utils/errorMessage";
-import { emailInitialMessage, emailMessageReducer  } from "../reducer/emailReducer";
-import { passwordInitialMessage, passwordMessageReducer } from "../reducer/passwordReducer";
-import { passwordCheckInitialMessage,passwordCheckMessageReducer } from "../reducer/passwordCheckReducer";
-import { nicknameMessageReduer, nicknameInitialMessage } from "../reducer/nicknameReducer";
+import {
+  emailInitialMessage,
+  emailMessageReducer,
+} from "../reducer/emailReducer";
+import {
+  passwordInitialMessage,
+  passwordMessageReducer,
+} from "../reducer/passwordReducer";
+import {
+  passwordCheckInitialMessage,
+  passwordCheckMessageReducer,
+} from "../reducer/passwordCheckReducer";
+import {
+  nicknameMessageReduer,
+  nicknameInitialMessage,
+} from "../reducer/nicknameReducer";
 import { useSignUpValidation } from "../hooks/useSignUpValidation";
 
 import EmailInput from "../components/input/EmailInput";
@@ -12,14 +24,27 @@ import PasswordInput from "../components/input/PasswordInput";
 import NicknameInput from "../components/input/NicknameInput";
 import { FetchUrl } from "../utils/constants";
 import { apiRequestNoAuth } from "../utils/fetchData";
+import logo from "../assets/images/logo.png";
 
 const reader = new FileReader();
 
-export default function SignUp({setLogIn, setSignUp}) {
-  const [emailState, emailDispatcher] = useReducer(emailMessageReducer, emailInitialMessage);
-  const [passwordState, passwordDispatcher] = useReducer(passwordMessageReducer,passwordInitialMessage)
-  const [passwordCheckState, passwordCheckDispatcher] = useReducer(passwordCheckMessageReducer, passwordCheckInitialMessage)
-  const [nicknameState, nicknameDispatcher] = useReducer(nicknameMessageReduer, nicknameInitialMessage )
+export default function SignUp({ setLogIn, setSignUp }) {
+  const [emailState, emailDispatcher] = useReducer(
+    emailMessageReducer,
+    emailInitialMessage
+  );
+  const [passwordState, passwordDispatcher] = useReducer(
+    passwordMessageReducer,
+    passwordInitialMessage
+  );
+  const [passwordCheckState, passwordCheckDispatcher] = useReducer(
+    passwordCheckMessageReducer,
+    passwordCheckInitialMessage
+  );
+  const [nicknameState, nicknameDispatcher] = useReducer(
+    nicknameMessageReduer,
+    nicknameInitialMessage
+  );
 
   const [profileImage, setProfileImage] = useState("");
   const [email, setEmail] = useState("");
@@ -29,7 +54,8 @@ export default function SignUp({setLogIn, setSignUp}) {
 
   const [imageNull, setImageNull] = useState(true);
 
-  const isValid = useSignUpValidation(email,
+  const isValid = useSignUpValidation(
+    email,
     password,
     passwordCheck,
     nickname,
@@ -37,7 +63,8 @@ export default function SignUp({setLogIn, setSignUp}) {
     emailState,
     passwordState,
     passwordCheckState,
-    nicknameState)
+    nicknameState
+  );
 
   //이미지 변경 시
   const handleChangeProfileImage = (event) => {
@@ -63,25 +90,24 @@ export default function SignUp({setLogIn, setSignUp}) {
   //   return true;
   // };
 
-
   //회원가입 버튼 클릭 시
   const handleClickSignUp = async () => {
     if (!isValid) return;
-  
+
     const data = {
       email,
       password,
       nickname,
       profileImage: profileImage,
     };
-  
+
     try {
       const responseData = await apiRequestNoAuth({
         url: FetchUrl.signUp,
         method: "POST",
         body: data,
       });
-  
+
       switch (responseData.status) {
         case 201:
           alert("회원가입 성공");
@@ -98,11 +124,13 @@ export default function SignUp({setLogIn, setSignUp}) {
       alert("회원가입 중 에러가 발생했습니다. 잠시 후 다시 시도해주세요.");
     }
   };
-  
 
   return (
     <section className={styles.signUpMain}>
-      <p className={styles.mainTitle}>회원가입</p>
+      <div className={styles.title}>
+        <img src={logo} alt="logo" className={styles.logo} />
+      </div>
+
       <form className={styles.signUpContainer}>
         <div className={styles.topContainer}>
           <p className={styles.inputTitle}>프로필 사진</p>
@@ -134,18 +162,28 @@ export default function SignUp({setLogIn, setSignUp}) {
           </div>
         </div>
         <div className={styles.bottomContainer}>
-          <EmailInput email={email} setEmail={setEmail} emailState={emailState} emailDispatcher={emailDispatcher} />
-          <PasswordInput 
-            password={password} 
-            setPassword={setPassword} 
-            passwordCheck={passwordCheck} 
-            setPasswordCheck={setPasswordCheck} 
-            passwordState={passwordState} 
-            passwordDispatcher={passwordDispatcher} 
-            passwordCheckState={passwordCheckState} 
-            passwordCheckDispatcher={passwordCheckDispatcher} 
+          <EmailInput
+            email={email}
+            setEmail={setEmail}
+            emailState={emailState}
+            emailDispatcher={emailDispatcher}
           />
-          <NicknameInput nickname={nickname} setNickname={setNickname} nicknameState={nicknameState} nicknameDispatcher={nicknameDispatcher} />
+          <PasswordInput
+            password={password}
+            setPassword={setPassword}
+            passwordCheck={passwordCheck}
+            setPasswordCheck={setPasswordCheck}
+            passwordState={passwordState}
+            passwordDispatcher={passwordDispatcher}
+            passwordCheckState={passwordCheckState}
+            passwordCheckDispatcher={passwordCheckDispatcher}
+          />
+          <NicknameInput
+            nickname={nickname}
+            setNickname={setNickname}
+            nicknameState={nicknameState}
+            nicknameDispatcher={nicknameDispatcher}
+          />
         </div>
         <button
           type="button"
