@@ -12,17 +12,18 @@ export default function LogoutButton() {
   const handleClickLogOut = useCallback(async () => {
     try {
       setLogoutStatus("loading");
-      const responseData = await apiRequest({
+      const response = await fetch({
         url: FetchUrl.logOut,
-        method: "DELETE",
+        method: "POST",
       });
 
-      if (responseData.status !== 200) {
+      if (response.status !== 200) {
         setLogoutStatus("fail");
         alert("로그아웃 실패. 다시 시도하세요.");
         return;
       }
 
+      localStorage.removeItem("access");
       setLogoutStatus("success");
       alert("로그아웃 됐습니다.");
       navigate(navUrl.home);

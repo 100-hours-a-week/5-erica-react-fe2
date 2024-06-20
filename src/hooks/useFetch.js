@@ -1,6 +1,7 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { navUrl } from "../utils/navigate";
 import { useNavigate } from "react-router-dom";
+import { FetchUrl } from "../utils/constants";
 
 export default function useFetch(url, options) {
   const [logIn, setLogIn] = useState(null);
@@ -9,17 +10,49 @@ export default function useFetch(url, options) {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const fetchApi = useCallback(async () => {
+  const refreshToken = async () => {
+    try {
+      const response = await fetch(`${FetchUrl.reissue}`, {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (!response.ok) {
+        throw new Error("Failed to refresh token");
+      }
+      const accessToken = response.headers.get("access");
+      localStorage.setItem("access", accessToken); // 새로운 토큰 설정
+      return accessToken;
+    } catch (error) {
+      console.error("Failed to refresh token", error);
+      throw error;
+    }
+  };
+
+  const fetchApi = async (retry = true) => {
     setLoading(true);
     try {
-      const res = await fetch(url, options);
-
-      const newToken = res.headers.get("Authorization");
-      if (newToken) {
-        const tokenParts = newToken.split(" ");
-        if (tokenParts.length === 2 && tokenParts[0] === "Bearer") {
-          localStorage.setItem("token", tokenParts[1]);
+      let res = await fetch(url, options);
+      console.log(res);
+      if (res.status === 401 && retry) {
+        try {
+          const newToken = await refreshToken();
+          options.headers.access = `${newToken}`;
+          res = await fetch(url, options);
+        } catch (refreshError) {
+          setLogIn(false);
+          setError(refreshError);
+          setLoading(false);
+          navigate(navUrl.home);
+          return;
         }
+      }
+
+      const accessToken = res.headers.get("access");
+      if (accessToken) {
+        localStorage.setItem("access", accessToken);
       }
 
       const json = await res.json();
@@ -50,11 +83,11 @@ export default function useFetch(url, options) {
       setError(err);
       setLoading(false);
     }
-  }, [url, options]);
+  };
 
-  useEffect(function fetchedData() {
+  useEffect(() => {
     fetchApi();
-  }, []);
+  }, [url]);
 
   return { responseData, error, loading, logIn };
 }

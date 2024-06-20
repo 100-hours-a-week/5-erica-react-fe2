@@ -13,6 +13,6 @@ export const getHeadersWithToken = () => {
     "ngrok-skip-browser-warning": "69420",
     "Content-Type": "application/json",
     Accept: "application/json",
-    Authorization: `Bearer ${localStorage.getItem("token")}`,
+    access: `${localStorage.getItem("access")}`,
   };
 };

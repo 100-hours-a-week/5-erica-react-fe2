@@ -4,7 +4,7 @@ import styles from "../styles/LogIn.module.css";
 import { emailNotValidErrorLine } from "../utils/errorMessage";
 import { navUrl } from "../utils/navigate";
 import { FetchUrl } from "../utils/constants";
-import { apiRequestNoAuth } from "../utils/fetchData";
+import { headersNoToken } from "../static";
 import { enableScroll } from "../utils/scroll";
 import logo from "../assets/images/logo.png";
 
@@ -13,6 +13,7 @@ export default function LogInPage() {
   const [password, setPassword] = useState("");
   const [emailNotValid, setEmailNotValid] = useState(false);
   const [logInSuccess, setLogInSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleChangeEmail = (event) => {
@@ -25,38 +26,46 @@ export default function LogInPage() {
   };
 
   const handleClickLogIn = async () => {
+    setLoading(true);
     const isEmailValid = checkEmailValidation(email);
 
     if (!isEmailValid) return;
 
     try {
-      const responseData = await apiRequestNoAuth({
-        url: FetchUrl.logIn,
+      const responseData = await fetch(FetchUrl.logIn, {
         method: "POST",
-        body: {
+        body: JSON.stringify({
           email,
           password,
-        },
+        }),
+        credentials: "include",
+        headers: headersNoToken,
       });
 
-      switch (responseData.status) {
-        case 200:
-          console.log(responseData.data);
-          localStorage.setItem("token", responseData.data?.token);
+      if (responseData.ok) {
+        const accessToken = responseData.headers.get("access");
+        if (accessToken) {
+          localStorage.setItem("access", accessToken);
+          alert("로그인 성공");
           setLogInSuccess(true);
           enableScroll();
           setTimeout(() => {
-            navigate(navUrl.posts, { replace: true });
-          }, 3000);
-          break;
-        default:
-          setLogInSuccess(false);
-          alert("로그인 실패");
-          break;
+            navigate(navUrl.posts);
+          }, 1000);
+          setLoading(false);
+        } else {
+          alert("토큰 없음");
+          setLoading(false);
+        }
+      } else {
+        setLogInSuccess(false);
+        alert("로그인 실패");
+        setLoading(false);
       }
     } catch (error) {
       console.error("로그인 요청 중 에러가 발생했습니다:", error);
       alert("로그인 요청 중 에러가 발생했습니다. 잠시 후 다시 시도해주세요.");
+      setLoading(false);
     }
   };
 
@@ -113,7 +122,7 @@ export default function LogInPage() {
           className={
             logInSuccess ? styles.logInButton : styles.logInButtonDisabled
           }
-          disabled={!email || !password}
+          disabled={!email || !password || loading}
         >
           로그인
         </button>

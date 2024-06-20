@@ -2,6 +2,7 @@ import { backHost } from "../static";
 
 export const FetchUrl = {
   logOut: `${backHost}/api/users/logOut`,
+  reissue: `${backHost}/api/reissue`,
   posts: `${backHost}/api/posts`,
   email: `${backHost}/api/users/email`,
   nickname: `${backHost}/api/users/nickname`,
