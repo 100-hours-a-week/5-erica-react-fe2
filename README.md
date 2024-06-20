@@ -140,35 +140,37 @@
 `홈`
 | 인트로 | 로그인 모달 | 회원가입 모달 |
 |---|---|---|
-|![image](https://github.com/100-hours-a-week/5-erica-react-fe/assets/81230764/a57cf720-321d-4ea4-8b07-12a67bf884ed)|![image](https://github.com/100-hours-a-week/5-erica-react-fe/assets/81230764/2b064bce-ce5a-4c47-a162-5cac4fce313b)|![image](https://github.com/100-hours-a-week/5-erica-react-fe/assets/81230764/d11c592f-ab70-47e9-b82c-9b950d1875ad)|
+|![image](https://github.com/100-hours-a-week/5-erica-react-fe2/assets/81230764/2b46a22b-a03c-41ea-b428-6caf55a311c1)|![image](https://github.com/100-hours-a-week/5-erica-react-fe2/assets/81230764/fc7e9b7f-66f8-4b2e-9b7b-c414a1777cfb)|![image](https://github.com/100-hours-a-week/5-erica-react-fe2/assets/81230764/a58b717a-2e42-48f4-b8ec-0b0c1dd2c753)|
 
-  
+
 `게시글 목록`
 
 |전체 게시물|개발 게시물|고민 게시글|내 게시글|
 |---|---|---|---|
-|![image](https://github.com/100-hours-a-week/5-erica-react-fe/assets/81230764/d03e5a5d-5d39-4d49-bdb2-303ef31bc79d)|![image](https://github.com/100-hours-a-week/5-erica-react-fe/assets/81230764/fd5ab35c-9bd7-49d8-95c6-5e1e73e757d1)|![image](https://github.com/100-hours-a-week/5-erica-react-fe/assets/81230764/a04d6ffc-8448-4ad4-abd0-70a014d194a2)|![image](https://github.com/100-hours-a-week/5-erica-react-fe/assets/81230764/f99c44b3-ab8a-4cf4-ab11-9327fa7c432d)|
+|![image](https://github.com/100-hours-a-week/5-erica-react-fe2/assets/81230764/62786755-0dbe-4734-8180-57538681f81d)|![image](https://github.com/100-hours-a-week/5-erica-react-fe2/assets/81230764/7b5fdee5-1bf9-495a-a2df-1fd21cae0d93)|![image](https://github.com/100-hours-a-week/5-erica-react-fe2/assets/81230764/85d6783c-adc8-4c31-8186-d9781140a2a0)|![image](https://github.com/100-hours-a-week/5-erica-react-fe2/assets/81230764/5d082716-2766-4cb5-87c6-0e36fe3bb49a)|
+
+
 
   
 `게시물 작성 / 상세 / 수정 / 삭제`
 
 |게시물 작성|게시물 상세|게시글 수정|게시글 삭제|
 |---|---|---|---|
-|![image](https://github.com/100-hours-a-week/5-erica-react-fe/assets/81230764/a427bfca-0334-433c-9a8f-5ea0bededdcc)|![image](https://github.com/100-hours-a-week/5-erica-react-fe/assets/81230764/9a5b80bd-735b-4577-a78b-369d4422bef1)|![image](https://github.com/100-hours-a-week/5-erica-react-fe/assets/81230764/d3da8573-4e8e-4ad0-a4ec-d77958d48afe)|![image](https://github.com/100-hours-a-week/5-erica-react-fe/assets/81230764/dd9a6fe0-f48d-48a3-aeb7-192f88bdd8b3)|
+|![image](https://github.com/100-hours-a-week/5-erica-react-fe2/assets/81230764/6019de80-cb00-4265-bc2d-59ca93021eb4)|![image](https://github.com/100-hours-a-week/5-erica-react-fe2/assets/81230764/b393484f-ec91-4565-9d3e-f943bb4a54e3)|![image](https://github.com/100-hours-a-week/5-erica-react-fe2/assets/81230764/acb0b2bd-a206-4baf-b061-9e27b71b2360)|![image](https://github.com/100-hours-a-week/5-erica-react-fe2/assets/81230764/3c9f7d68-71f0-4f6a-b899-0a5e2fd9e97a)|
   
 
 `댓글 목록 / 등록 / 수정 /삭제`
 
 |댓글 목록|댓글 등록|댓글 수정|댓글 삭제|
 |---|---|---|---|
-|![image](https://github.com/100-hours-a-week/5-erica-react-fe/assets/81230764/8178d223-048d-4d7d-bb72-6e44d555ecc9)|![image](https://github.com/100-hours-a-week/5-erica-react-fe/assets/81230764/749d122e-c49d-45c5-965b-3026570d1224)|![image](https://github.com/100-hours-a-week/5-erica-react-fe/assets/81230764/e85f499b-4410-4b15-9b6a-70897cde84ca)|![image](https://github.com/100-hours-a-week/5-erica-react-fe/assets/81230764/ea914f0a-074c-48b2-88ea-6a6efc338ff8)|
+|![image](https://github.com/100-hours-a-week/5-erica-react-fe2/assets/81230764/f78f9b65-f8f9-4754-aaa1-43c8785144d2)|![image](https://github.com/100-hours-a-week/5-erica-react-fe2/assets/81230764/37c6727a-b344-4b89-a52d-1c86c6b5be10)|![image](https://github.com/100-hours-a-week/5-erica-react-fe2/assets/81230764/55c7615d-946e-4301-a8b2-386ecbbc1007)|![image](https://github.com/100-hours-a-week/5-erica-react-fe2/assets/81230764/8fb518b7-8e58-4ee3-9088-f84240549ad5)|
 
-  
+
 `프로필 수정 / 비밀번호 수정 / 회원 탈퇴 / 로그아웃`
 
 |프로필 수정|비밀번호 수정|회원 탈퇴|로그아웃|
 |---|---|---|---|
-|![image](https://github.com/100-hours-a-week/5-erica-react-fe/assets/81230764/394dc685-8658-4447-a6ec-031edd84a38d)|![image](https://github.com/100-hours-a-week/5-erica-react-fe/assets/81230764/29d158f2-c9c3-492a-a1dc-9fa3df218a5a)|![image](https://github.com/100-hours-a-week/5-erica-react-fe/assets/81230764/9dcec60c-4733-4b9e-ba61-69d27cd39444)|![image](https://github.com/100-hours-a-week/5-erica-react-fe/assets/81230764/5f3eed2f-393a-4198-aa0d-8c852823c8e6)|
+|![image](https://github.com/100-hours-a-week/5-erica-react-fe2/assets/81230764/f50fc63a-0ff8-411e-80e0-6a1bce248282)|![image](https://github.com/100-hours-a-week/5-erica-react-fe2/assets/81230764/8614dc82-8656-4038-8994-0f8b9db92629)|![image](https://github.com/100-hours-a-week/5-erica-react-fe2/assets/81230764/ecbb94f8-288a-4036-b6da-28ee318c0d9e)|![image](https://github.com/100-hours-a-week/5-erica-react-fe2/assets/81230764/ed5e36f4-e8b7-4364-8872-199972dd0061)
 
 <br />
 
