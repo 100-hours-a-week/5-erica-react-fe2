@@ -5,6 +5,7 @@ import UserProfile from "./users/UserProfile";
 import styles from "../styles/Navbar.module.css";
 import { useShowProfile } from "../hooks/useShowProfile";
 import { useLocation } from "react-router-dom";
+import SearchBar from "./search/SearchBar";
 
 export default function Navbar() {
   const { pathname } = useLocation();
@@ -20,6 +21,7 @@ export default function Navbar() {
         </Link>
         {showProfile ? (
           <div className={styles.navbarRight}>
+            <SearchBar />
             <Link className={styles.writeBtn} to={navUrl.addPost}>
               📣 새 스피치
             </Link>

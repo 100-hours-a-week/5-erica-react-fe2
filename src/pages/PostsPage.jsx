@@ -8,6 +8,7 @@ import { FetchUrl } from "../utils/constants";
 import Layout from "../components/Layout";
 import MainLayout from "../components/MainLayout";
 import { useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 export function Posts() {
   const { responseData: userResponseData, logIn: userLogIn } = useFetch(
@@ -20,69 +21,57 @@ export function Posts() {
 
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const type = searchParams.get("type");
+
+  const [type, setType] = useState(searchParams.get("type"));
+  const [search, setSearch] = useState(searchParams.get("q"));
+
+  useEffect(() => {
+    setType(searchParams.get("type"));
+    setSearch(searchParams.get("q"));
+  }, [location]);
 
   return (
     <MainLayout>
       <AuthLayout logIn={userLogIn} responseData={userResponseData}>
         <section className={styles.postsMain}>
-          {type === "coding" ? (
-            <CodingPosts />
-          ) : type === "other" ? (
-            <OtherPosts />
-          ) : type === "my" ? (
-            <MyPosts />
-          ) : (
-            <AllPosts />
-          )}
+          <AllPosts type={type} search={search} />
         </section>
       </AuthLayout>
     </MainLayout>
   );
 }
 
-function AllPosts() {
-  const { responseData, loading } = useFetch(FetchUrl.posts, {
+function AllPosts({ type, search }) {
+  const [newUrl, setNewUrl] = useState(FetchUrl.posts);
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    let url = FetchUrl.posts;
+
+    const params = new URLSearchParams();
+    if (type) {
+      params.append("type", encodeURIComponent(type));
+    }
+    if (search) {
+      params.append("q", encodeURIComponent(search));
+    }
+    if (params.toString()) {
+      url += `?${params.toString()}`;
+    }
+    console.log("NewUrl: " + url);
+    setNewUrl(url);
+  }, [type, search]);
+
+  const { responseData, loading } = useFetch(newUrl, {
     headers: getHeadersWithToken(),
     credentials: "include",
   });
 
-  return (
-    <LoadingMiniPosts loading={loading} responseData={responseData?.data} />
-  );
-}
+  useEffect(() => {
+    setData(responseData?.data);
+  }, [responseData]);
 
-function MyPosts() {
-  const { responseData, loading } = useFetch(FetchUrl.myPosts, {
-    headers: getHeadersWithToken(),
-    credentials: "include",
-  });
-
-  return (
-    <LoadingMiniPosts loading={loading} responseData={responseData?.data} />
-  );
-}
-
-function OtherPosts() {
-  const { responseData, loading } = useFetch(FetchUrl.otherPosts, {
-    headers: getHeadersWithToken(),
-    credentials: "include",
-  });
-
-  return (
-    <LoadingMiniPosts loading={loading} responseData={responseData?.data} />
-  );
-}
-
-function CodingPosts() {
-  const { responseData, loading } = useFetch(FetchUrl.codingPosts, {
-    headers: getHeadersWithToken(),
-    credentials: "include",
-  });
-
-  return (
-    <LoadingMiniPosts loading={loading} responseData={responseData?.data} />
-  );
+  return <LoadingMiniPosts loading={loading} responseData={data} />;
 }
 
 function MiniPostList({ responseData }) {

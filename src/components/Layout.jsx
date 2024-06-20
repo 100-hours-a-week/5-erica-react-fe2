@@ -6,11 +6,13 @@ import useFetch from "../hooks/useFetch";
 import { backHost } from "../static";
 import { getHeadersWithToken } from "../static";
 import side_banner from "../assets/images/side_banner.png";
-import { useState } from "react";
 import withLogIn from "../hoc/withLogIn";
+import { useLocation } from "react-router-dom";
 
 export default function Layout({ children, logIn, responseData }) {
-  const [clickedTab, setClickedTab] = useState("전체");
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const type = searchParams.get("type");
 
   if (!responseData) {
     return null;
@@ -21,45 +23,29 @@ export default function Layout({ children, logIn, responseData }) {
       <div className={styles.top}>
         <Link
           to={navUrl.posts}
-          onClick={() => {
-            setClickedTab("전체");
-          }}
-          className={
-            clickedTab === "전체" ? `${styles.tabClicked}` : `${styles.tab}`
-          }
+          className={type === null ? `${styles.tabClicked}` : `${styles.tab}`}
         >
           전체
         </Link>
         <Link
           to={navUrl.codingPosts}
-          onClick={() => {
-            setClickedTab("개발");
-          }}
           className={
-            clickedTab === "개발" ? `${styles.tabClicked}` : `${styles.tab}`
+            type === "coding" ? `${styles.tabClicked}` : `${styles.tab}`
           }
         >
           개발
         </Link>
         <Link
           to={navUrl.otherPosts}
-          onClick={() => {
-            setClickedTab("고민");
-          }}
           className={
-            clickedTab === "고민" ? `${styles.tabClicked}` : `${styles.tab}`
+            type === "other" ? `${styles.tabClicked}` : `${styles.tab}`
           }
         >
           고민
         </Link>
         <Link
           to={navUrl.myPosts}
-          onClick={() => {
-            setClickedTab("MY글");
-          }}
-          className={
-            clickedTab === "MY글" ? `${styles.tabClicked}` : `${styles.tab}`
-          }
+          className={type === "my" ? `${styles.tabClicked}` : `${styles.tab}`}
         >
           MY 글
         </Link>
