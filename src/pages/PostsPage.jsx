@@ -8,7 +8,7 @@ import { FetchUrl } from "../utils/constants";
 import Layout from "../components/Layout";
 import MainLayout from "../components/MainLayout";
 import { useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 
 export function Posts() {
   const { responseData: userResponseData, logIn: userLogIn } = useFetch(
@@ -42,11 +42,13 @@ export function Posts() {
 }
 
 function AllPosts({ type, search }) {
-  const [newUrl, setNewUrl] = useState(FetchUrl.posts);
-  const [data, setData] = useState(null);
+  const [page, setPage] = useState(0);
+  const [data, setData] = useState([]);
+  const [hasMore, setHasMore] = useState(true);
+  const observer = useRef();
 
-  useEffect(() => {
-    let url = FetchUrl.posts;
+  const loadMorePosts = useCallback(() => {
+    let url = `${FetchUrl.posts}?page=${page}&size=20`;
 
     const params = new URLSearchParams();
     if (type) {
@@ -56,30 +58,60 @@ function AllPosts({ type, search }) {
       params.append("q", encodeURIComponent(search));
     }
     if (params.toString()) {
-      url += `?${params.toString()}`;
+      url += `&${params.toString()}`;
     }
-    console.log("NewUrl: " + url);
-    setNewUrl(url);
-  }, [type, search]);
+    return url;
+  }, [page, type, search]);
 
-  const { responseData, loading } = useFetch(newUrl, {
+  const { responseData, loading } = useFetch(loadMorePosts(), {
     headers: getHeadersWithToken(),
     credentials: "include",
   });
 
   useEffect(() => {
-    setData(responseData?.data);
+    if (responseData?.data) {
+      setData((prevData) => [...prevData, ...responseData.data]);
+      setHasMore(responseData.data.length > 0);
+    }
   }, [responseData]);
 
-  return <LoadingMiniPosts loading={loading} responseData={data} />;
+  useEffect(() => {
+    setData([]);
+    setPage(0);
+  }, [type, search]);
+
+  const lastPostElementRef = useCallback(
+    (node) => {
+      if (loading) return;
+      if (observer.current) observer.current.disconnect();
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && hasMore) {
+          setPage((prevPage) => prevPage + 1);
+        }
+      });
+      if (node) observer.current.observe(node);
+    },
+    [loading, hasMore]
+  );
+
+  return (
+    <div>
+      <LoadingMiniPosts
+        responseData={data}
+        lastPostElementRef={lastPostElementRef}
+      />
+      <div className={styles.target} ref={lastPostElementRef}></div>
+      {loading && <p>Loading...</p>}
+    </div>
+  );
 }
 
-function MiniPostList({ responseData }) {
+function MiniPostList({ responseData, lastPostElementRef }) {
   return (
     <div className={styles.postsWrapper}>
-      {responseData.map((post) => (
-        <MiniPost key={post.post_id} data={post} />
-      ))}
+      {responseData.map((post, index) => {
+        return <MiniPost key={post.post_id} data={post} />;
+      })}
       <div className={styles.target}></div>
     </div>
   );
