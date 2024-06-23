@@ -1,4 +1,4 @@
-export const backHost = "http://localhost:8080";
+export const backHost = "http://ec2-13-125-22-74.ap-northeast-2.compute.amazonaws.com/";
 
 export const headersNoToken = {
   "Access-Control-Allow-Origin": "*",
