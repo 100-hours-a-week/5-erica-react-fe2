@@ -3,7 +3,7 @@ import { navUrl } from "../../utils/navigate";
 import { useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { FetchUrl } from "../../utils/constants";
-import { apiRequest } from "../../utils/fetchData";
+import { getHeadersWithToken } from "../../static";
 
 export default function LogoutButton() {
   const navigate = useNavigate();
@@ -14,7 +14,9 @@ export default function LogoutButton() {
       setLogoutStatus("loading");
       const response = await fetch({
         url: FetchUrl.logOut,
-        method: "POST",
+        headers: getHeadersWithToken(),
+        credentials: "include",
+        method: "POST"
       });
 
       if (response.status !== 200) {
