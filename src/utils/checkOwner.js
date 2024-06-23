@@ -3,7 +3,6 @@ import { apiRequest } from "./fetchData";
 
 export const checkCommentOwner = async ({ postId, commentId }) => {
   try {
-    console.log(commentId);
     const checkData = await apiRequest({
       url: `${FetchUrl.posts}/${postId}/comments/checkOwner`,
       method: "POST",
@@ -14,7 +13,6 @@ export const checkCommentOwner = async ({ postId, commentId }) => {
 
     return checkData;
   } catch (error) {
-    console.log(error);
   }
 };
 
@@ -25,9 +23,7 @@ export const checkPostOwner = async (postId) => {
       method: "POST",
       body: { post_id: postId },
     });
-    console.log(checkData);
     return checkData;
   } catch (error) {
-    console.log(error);
   }
 };

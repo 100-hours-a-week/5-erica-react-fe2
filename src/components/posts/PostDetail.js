@@ -8,7 +8,6 @@ import { changeDate } from "../../utils/date.js";
 
 function PostDetail({ responseData, setIsPostDelete }) {
   const data = responseData?.data;
-  console.log(data);
   return (
     <div className={styles.detailBoard}>
       <div className={styles.boardHeader}>

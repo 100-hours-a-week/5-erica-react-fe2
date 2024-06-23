@@ -14,7 +14,6 @@ export default function Comment({ data, postId, setIsAdd, setUpdateTarget }) {
       postId,
       commentId: data.comment_id,
     });
-    console.log(checkResponseData);
     if (checkResponseData.status === 403) {
       alert("본인이 작성한 댓글이 아닙니다.");
       return;

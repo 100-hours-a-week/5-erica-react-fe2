@@ -35,7 +35,6 @@ export default function useFetch(url, options) {
     setLoading(true);
     try {
       let res = await fetch(url, options);
-      console.log(res);
       if (res.status === 401 && retry) {
         try {
           const newToken = await refreshToken();
@@ -56,7 +55,6 @@ export default function useFetch(url, options) {
       }
 
       const json = await res.json();
-      console.log(json);
       if (json.status === 200 || json.status === 201) {
         setLogIn(true);
         setResponseData(json);

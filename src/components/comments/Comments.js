@@ -19,7 +19,7 @@ export default function Comments({ postId }) {
   );
 
   if (error) {
-    console.log(error);
+    // console.log(error);
   }
 
   return (
