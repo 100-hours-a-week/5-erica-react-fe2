@@ -5,7 +5,6 @@ export default function withLogIn(Component) {
   return function (props) {
     const navigate = useNavigate();
     if (props.error) {
-      console.log(props.error);
       alert("로딩 중 에러 발생");
       return <Navigate to={navUrl.home} />;
     }

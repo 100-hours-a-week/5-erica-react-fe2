@@ -1,4 +1,4 @@
-export const backHost = "http://localhost:8080";
+export const backHost = "https://opensquare.kro.kr";
 
 export const headersNoToken = {
   "Access-Control-Allow-Origin": "*",

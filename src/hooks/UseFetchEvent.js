@@ -17,7 +17,6 @@ export default function useFetchEvent(url, options) {
       return null;
     } catch (err) {
       setLoading(false);
-      console.log(err);
     }
   };
 
